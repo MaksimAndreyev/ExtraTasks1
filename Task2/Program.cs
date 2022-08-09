@@ -42,9 +42,25 @@ string password = "111";
 string name = "Имя не задано";
 while (true)
 {
-    Console.WriteLine("Введите что-нибудь:");
+    Console.WriteLine("Введите команду (чтобы получить список команд введите Help):");
     string input = Console.ReadLine();
-    if (input == "exit")
+    if (input == "Help")
+    {
+        Help();
+    }
+    else if (input == "SetName")
+    {
+        name = SetName();
+    }
+    else if (input == "SetPassword")
+    {
+        password = SetPassword();
+    }
+    else if (input == "WriteName")
+    {
+        WriteName(name, password);
+    }
+    else if (input == "Exit")
     {
         break;
     }
