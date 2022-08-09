@@ -23,6 +23,21 @@ string SetPassword()
 }
 
 
+void WriteName(string name, string password)
+{
+    Console.WriteLine("Для вывода имени введите пароль:");
+    string input = Console.ReadLine();
+    if (input == password)
+    {
+        Console.WriteLine(name);
+    }
+    else
+    {
+        Console.WriteLine("Неверный пароль");
+    }
+}
+
+
 string password = "111";
 string name = "Имя не задано";
 while (true)
