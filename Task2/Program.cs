@@ -1,22 +1,21 @@
-<<<<<<< HEAD
-﻿string SetName()
+string SetName()
 {
     Console.WriteLine("Введите имя:");
     string userName = Console.ReadLine();
     return userName;
 }
-string name = "Имя не задано";
-=======
-﻿void Help()
+
+
+void Help()
 {
     Console.WriteLine("SetName – Установить имя");
-    Console.WriteLine("SetPassword – Установить пароль (по умоляанию - 111)");
+    Console.WriteLine("SetPassword – Установить пароль (по умолчанию - 111)");
     Console.WriteLine("Exit – выход");
     Console.WriteLine("WriteName – вывести имя после ввода пароля");
 }
 
 
->>>>>>> help
+string name = "Имя не задано";
 while (true)
 {
     Console.WriteLine("Введите что-нибудь:");
