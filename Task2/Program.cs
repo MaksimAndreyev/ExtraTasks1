@@ -14,6 +14,16 @@ void Help()
     Console.WriteLine("WriteName – вывести имя после ввода пароля");
 }
 
+
+string SetPassword()
+{
+    Console.WriteLine("Задайте пароль:");
+    string userPassword = Console.ReadLine();
+    return userPassword;
+}
+
+
+string password = "111";
 string name = "Имя не задано";
 while (true)
 {
