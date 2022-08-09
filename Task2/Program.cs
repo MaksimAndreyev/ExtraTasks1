@@ -14,7 +14,6 @@ void Help()
     Console.WriteLine("WriteName – вывести имя после ввода пароля");
 }
 
-
 string name = "Имя не задано";
 while (true)
 {
