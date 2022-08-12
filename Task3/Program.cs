@@ -72,7 +72,7 @@ while (flag == true)
                     euros = 0;
                     break;
                 case "доллары":
-                    dollars = ConvertFromRubles(ConvertToRubles(euros, rubles, EuToRu)-rubles, euros, DoToRu);
+                    dollars = ConvertFromRubles(ConvertToRubles(euros, rubles, EuToRu)-rubles, dollars, DoToRu);
                     euros = 0;
                     break;
                 default:
