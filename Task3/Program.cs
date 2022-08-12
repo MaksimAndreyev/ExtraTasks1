@@ -17,8 +17,8 @@ float dollars = 100;
 float euros = 75;
 float DoToRu = 60;
 float EuToRu = 62;
-int flag = 1;
-while (flag == 1)
+bool flag = true;
+while (flag == true)
 {
     Console.WriteLine("Вас приветствует конвертер валют. Для окнчания работы введите \"стоп\"");
     Console.WriteLine($"Ваш баланс:\n{rubles} рублей\n{dollars} долларов\n{euros} евро");
@@ -27,7 +27,7 @@ while (flag == 1)
     switch(input)
     {
         case "стоп":
-            flag = 0;
+            flag = false;
             break;
         case "рубли":
             string input2 = Console.ReadLine().ToLower();
