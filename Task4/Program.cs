@@ -85,10 +85,21 @@ void Numbers(int[] array)
 }
 
 
-int[] array = new int[] {1, 2, 3, 4, 5};
+void Sum(int[] array)
+{
+    int sum = 0;
+    foreach (int element in array)
+    {
+        sum += element;
+    }
+    Console.WriteLine(sum);
+}
+
+
+int[] array = new int[0];
 while (true)
 {
-    Console.WriteLine("Для отображения массива введите \"показать\".");
+    Console.WriteLine("Для отображения массива введите \"показать\".\nДля вывода суммы элементов массива введите \"сумма\".");
     Console.WriteLine("Для создания нового массива введите \"новый\", а на следующей строчке значения.\nДля удаления конкретных чисел введите \"убрать\", а на следующей строчке значения.");
     Console.WriteLine("Для добавления элементов введите \"добавить\", а на следующей строчке числа.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
     string command = Console.ReadLine().ToLower();
@@ -98,6 +109,9 @@ while (true)
             return;
         case "показать":
             Numbers(array);
+            break;
+        case "сумма":
+            Sum(array);
             break;
         case "новый":
             array = SetNumbers();
