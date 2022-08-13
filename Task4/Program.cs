@@ -1,8 +1,12 @@
 ﻿int[] AddToArray(int[] array, int number)
 {
-    Array.Resize(ref array, array.Length + 1);
-    array[array.Length-1] = number;
-    return array;
+    int[] newArray = new int[array.Length+1];
+    for (int i=0; i<array.Length; i++)
+    {
+        newArray[i] = array[i];
+    }
+    newArray[newArray.Length-1] = number;
+    return newArray;
 }
 
 
