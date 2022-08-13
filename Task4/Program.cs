@@ -27,6 +27,20 @@ int[] RemoveFromArray(int[] array, int index)
 }
 
 
+int[] Shuffle(int[] array)
+{
+    int[] newArray = new int[array.Length];
+    int j = 0;
+    for (int i=0; i<newArray.Length; i++)
+    {
+        j = new Random().Next(0, array.Length);
+        newArray[i] = array[j];
+        array = RemoveFromArray(array, j);
+    }
+    return newArray;
+}
+
+
 int[] array = new int[] {1, 2, 3, 4, 5};
 while (true)
 {
@@ -35,7 +49,7 @@ while (true)
     {
         Console.Write(array[i] + " ");
     }
-    Console.WriteLine("\nДля добавления элемента введите \"добавить\", а на следующей строчке число.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля окончания работы введите \"стоп\"");
+    Console.WriteLine("\nДля добавления элемента введите \"добавить\", а на следующей строчке число.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
     string command = Console.ReadLine().ToLower();
     switch (command)
     {
@@ -48,6 +62,9 @@ while (true)
         case "добавить":
             int number = Convert.ToInt32(Console.ReadLine());
             array = AddToArray(array, number);
+            break;
+        case "перемешать":
+            array = Shuffle(array);
             break;
         default:
             Console.WriteLine("Ошибка ввода. Повторите попытку.");
