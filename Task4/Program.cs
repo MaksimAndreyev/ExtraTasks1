@@ -10,6 +10,20 @@
 }
 
 
+int[] RemoveNumbers(int[] array, int[] deleteList)
+{
+    foreach (int element in deleteList)
+    {
+        for (int i=0; i<array.Length; i++)
+        {
+            if (array[i] == element)
+            {
+                array = RemoveFromArray(array, i);
+            }
+        }
+    }
+    return array;
+}
 int[] AddToArray(int[] array, int[] numbers)
 {
     int[] newArray = new int[array.Length+numbers.Length];
@@ -66,7 +80,7 @@ while (true)
     {
         Console.Write(array[i] + " ");
     }
-    Console.WriteLine("\nДля создания нового массива введите \"новый\", а на следующей строчке значения.");
+    Console.WriteLine("\nДля создания нового массива введите \"новый\", а на следующей строчке значения.\nДля удаления конкретных чисел введите \"убрать\", а на следующей строчке значения.");
     Console.WriteLine("Для добавления элементов введите \"добавить\", а на следующей строчке числа.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
     string command = Console.ReadLine().ToLower();
     switch (command)
@@ -75,6 +89,10 @@ while (true)
             return;
         case "новый":
             array = SetNumbers();
+            break;
+        case "убрать":
+            int[] deleteList = SetNumbers();
+            array = RemoveNumbers(array, deleteList);
             break;
         case "удалить":
             int index = Convert.ToInt32(Console.ReadLine());
