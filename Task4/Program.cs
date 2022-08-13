@@ -23,6 +23,8 @@ int[] RemoveNumbers(int[] array, int[] deleteList)
         }
     }
     return array;
+
+
 }
 int[] AddToArray(int[] array, int[] numbers)
 {
@@ -72,21 +74,31 @@ int[] Shuffle(int[] array)
 }
 
 
-int[] array = new int[] {1, 2, 3, 4, 5};
-while (true)
+void Numbers(int[] array)
 {
     Console.WriteLine("Массив:");
     for (int i=0; i<array.Length; i++)
     {
         Console.Write(array[i] + " ");
     }
-    Console.WriteLine("\nДля создания нового массива введите \"новый\", а на следующей строчке значения.\nДля удаления конкретных чисел введите \"убрать\", а на следующей строчке значения.");
+    Console.WriteLine();
+}
+
+
+int[] array = new int[] {1, 2, 3, 4, 5};
+while (true)
+{
+    Console.WriteLine("Для отображения массива введите \"показать\".");
+    Console.WriteLine("Для создания нового массива введите \"новый\", а на следующей строчке значения.\nДля удаления конкретных чисел введите \"убрать\", а на следующей строчке значения.");
     Console.WriteLine("Для добавления элементов введите \"добавить\", а на следующей строчке числа.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
     string command = Console.ReadLine().ToLower();
     switch (command)
     {
         case "стоп":
             return;
+        case "показать":
+            Numbers(array);
+            break;
         case "новый":
             array = SetNumbers();
             break;
