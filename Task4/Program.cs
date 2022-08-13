@@ -10,14 +10,19 @@
 }
 
 
-int[] AddToArray(int[] array, int number)
+int[] AddToArray(int[] array, int[] numbers)
 {
-    int[] newArray = new int[array.Length+1];
+    int[] newArray = new int[array.Length+numbers.Length];
     for (int i=0; i<array.Length; i++)
     {
         newArray[i] = array[i];
     }
-    newArray[newArray.Length-1] = number;
+    int j = 0;
+    for (int i=array.Length; i<newArray.Length; i++)
+    {
+        newArray[i] = numbers[j];
+        j++;
+    }
     return newArray;
 }
 
@@ -62,7 +67,7 @@ while (true)
         Console.Write(array[i] + " ");
     }
     Console.WriteLine("\nДля создания нового массива введите \"новый\", а на следующей строчке значения.");
-    Console.WriteLine("Для добавления элемента введите \"добавить\", а на следующей строчке число.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
+    Console.WriteLine("Для добавления элементов введите \"добавить\", а на следующей строчке числа.\nДля удаления элемента введите \"удалить\", а на следующей строчке индекс.\nДля перемешивания массива введите \"перемешать\".\nДля окончания работы введите \"стоп\"");
     string command = Console.ReadLine().ToLower();
     switch (command)
     {
@@ -76,8 +81,8 @@ while (true)
             array = RemoveFromArray(array, index);
             break;
         case "добавить":
-            int number = Convert.ToInt32(Console.ReadLine());
-            array = AddToArray(array, number);
+            int[] numbers = SetNumbers();
+            array = AddToArray(array, numbers);
             break;
         case "перемешать":
             array = Shuffle(array);
