@@ -82,6 +82,20 @@ int[] DeleteSalary(int[] salaries, int index)
 }
 
 
+void FindDossier(string[][] names, string[] titles, int[] salaries)
+{
+    Console.WriteLine("Введите фамилию сотрудника:");
+    string surname = Console.ReadLine();
+    for (int i=0; i<names.Length; i++)
+    {
+        if (names[i][0] == surname)
+        {
+            Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+        }
+    }
+}
+
+
 string[][] names = new string[][] {new string[] {"Иванов", "Иван", "Иванович"}};
 string[] titles = {"кассир"};
 int[] salaries = {25000};
@@ -116,6 +130,9 @@ while (flag)
             names = DeleteName(names, index);
             titles = DeleteTitle(titles, index);
             salaries = DeleteSalary(salaries, index);
+            break;
+        case "поиск":
+            FindDossier(names, titles, salaries);
             break;
     }
 }
