@@ -84,15 +84,61 @@ int[] DeleteSalary(int[] salaries, int index)
 
 void FindDossier(string[][] names, string[] titles, int[] salaries)
 {
-    Console.WriteLine("Введите фамилию сотрудника:");
-    string surname = Console.ReadLine();
-    for (int i=0; i<names.Length; i++)
+    Console.WriteLine("Для поиска по фамилии введите \"по фамилии\".\nДля поиска по зарплате введите \"по зарплате\".\nДля поиска по должности введите \"по должности\":");
+    string searchBy = Console.ReadLine().ToLower();
+    bool noMatches = true;
+    switch (searchBy)
     {
-        if (names[i][0] == surname)
-        {
-            Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
-        }
+        case "по фамилии":
+            Console.WriteLine("Введите фамилию сотрудника:");
+            string surname = Console.ReadLine();
+            for (int i=0; i<names.Length; i++)
+            {
+                if (names[i][0] == surname)
+                {
+                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    noMatches = false;
+                }
+            }
+            break;
+        case "по зарплате":
+            Console.WriteLine("Введите зарплату:");
+            int salary = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Для отображения списка сотрудников с зарплатой больше указанной введите \"больше\".\nДля отображения списка сотрудников с зарплатой меньше указанной введите \"меньше\":");
+            string moreOrLess = Console.ReadLine().ToLower();
+            for (int i=0; i<salaries.Length; i++)
+            {
+
+                if (salaries[i] > salary && moreOrLess == "больше")
+                {
+                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    noMatches = false;
+                }
+                else if (salaries[i] < salary && moreOrLess == "меньше")
+                {
+                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    noMatches = false;
+                }
+            }
+            break;
+        case "по должности":
+            Console.WriteLine("Введите должность сотрудника:");
+            string title = Console.ReadLine();
+            for (int i=0; i<titles.Length; i++)
+            {
+                if (titles[i] == title)
+                {
+                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    noMatches = false;
+                }
+            }
+            break;
+        default:
+            Console.WriteLine("Некорректный параметр поиска.");
+            noMatches = false;
+            break;
     }
+    if (noMatches) Console.WriteLine("Ничего не найдено.");
 }
 
 
@@ -133,6 +179,9 @@ while (flag)
             break;
         case "поиск":
             FindDossier(names, titles, salaries);
+            break;
+        default:
+            Console.WriteLine("Ошибка ввода. Повторите попытку.");
             break;
     }
 }
