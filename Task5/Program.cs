@@ -31,6 +31,57 @@ void PrintDossiers(string[][] names, string[] titles, int[] salaries)
 }
 
 
+string[][] DeleteName(string[][] names, int index)
+{
+    string[][] newNames = new string[names.Length-1][];
+    int j = 0;
+    for (int i=0; i<names.Length; i++)
+    {
+        if (i == index)
+        {
+            continue;
+        }
+        newNames[j] = names[i];
+        j++;
+    }
+    return newNames;
+}
+
+
+string[] DeleteTitle(string[] titles, int index)
+{
+    string[] newTitles = new string[titles.Length-1];
+    int j = 0;
+    for (int i=0; i<titles.Length; i++)
+    {
+        if (i == index)
+        {
+            continue;
+        }
+        newTitles[j] = titles[i];
+        j++;
+    }
+    return newTitles;
+}
+
+
+int[] DeleteSalary(int[] salaries, int index)
+{
+    int[] newSalaries = new int[salaries.Length-1];
+    int j = 0;
+    for (int i=0; i<salaries.Length; i++)
+    {
+        if (i == index)
+        {
+            continue;
+        }
+        newSalaries[j] = salaries[i];
+        j++;
+    }
+    return newSalaries;
+}
+
+
 string[][] names = new string[][] {new string[] {"Иванов", "Иван", "Иванович"}};
 string[] titles = {"кассир"};
 int[] salaries = {25000};
@@ -58,6 +109,13 @@ while (flag)
             break;
         case "вывод":
             PrintDossiers(names, titles, salaries);
+            break;
+        case "удалить":
+            Console.WriteLine("Введите номер удаляемого досье:");
+            int index = Convert.ToInt32(Console.ReadLine())-1;
+            names = DeleteName(names, index);
+            titles = DeleteTitle(titles, index);
+            salaries = DeleteSalary(salaries, index);
             break;
     }
 }
