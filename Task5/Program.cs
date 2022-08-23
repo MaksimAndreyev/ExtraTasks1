@@ -88,6 +88,56 @@ int[] DeleteSalary(int[] salaries, int index)
 }
 
 
+bool FindBySurname(string[][] names, string[] titles, int[] salaries, string surname, bool noMatches)
+{
+    for (int i=0; i<names.Length; i++)
+        {
+            if (names[i][0] == surname)
+                {
+                    PrintDossier(names, titles, salaries, i);
+                    noMatches = false;
+                }
+        }
+    return noMatches;
+}
+
+
+bool FindBySalary(string[][] names, string[] titles, int[] salaries, int salary, bool noMatches)
+{
+    Console.WriteLine("Для отображения списка сотрудников с зарплатой больше указанной введите \"больше\".\nДля отображения списка сотрудников с зарплатой меньше указанной введите \"меньше\":");
+    string moreOrLess = Console.ReadLine().ToLower();
+    for (int i=0; i<salaries.Length; i++)
+        {
+
+            if (salaries[i] > salary && moreOrLess == "больше")
+                {
+                    PrintDossier(names, titles, salaries, i);
+                    noMatches = false;
+                }
+            else if (salaries[i] < salary && moreOrLess == "меньше")
+                {
+                    PrintDossier(names, titles, salaries, i);
+                    noMatches = false;
+                }
+        }
+    return noMatches;
+}
+
+
+bool FindByTitle(string[][] names, string[] titles, int[] salaries, string title, bool noMatches)
+{
+    for (int i=0; i<titles.Length; i++)
+        {
+            if (titles[i] == title)
+                {
+                    PrintDossier(names, titles, salaries, i);
+                    noMatches = false;
+                }
+        }
+    return noMatches;
+}
+
+
 void FindDossier(string[][] names, string[] titles, int[] salaries)
 {
     Console.WriteLine("Для поиска по фамилии введите \"по фамилии\".\nДля поиска по зарплате введите \"по зарплате\".\nДля поиска по должности введите \"по должности\":");
@@ -98,46 +148,17 @@ void FindDossier(string[][] names, string[] titles, int[] salaries)
         case "по фамилии":
             Console.WriteLine("Введите фамилию сотрудника:");
             string surname = Console.ReadLine();
-            for (int i=0; i<names.Length; i++)
-            {
-                if (names[i][0] == surname)
-                {
-                    PrintDossier(names, titles, salaries, i);
-                    noMatches = false;
-                }
-            }
+            noMatches = FindBySurname(names, titles, salaries, surname, noMatches);
             break;
         case "по зарплате":
             Console.WriteLine("Введите зарплату:");
             int salary = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Для отображения списка сотрудников с зарплатой больше указанной введите \"больше\".\nДля отображения списка сотрудников с зарплатой меньше указанной введите \"меньше\":");
-            string moreOrLess = Console.ReadLine().ToLower();
-            for (int i=0; i<salaries.Length; i++)
-            {
-
-                if (salaries[i] > salary && moreOrLess == "больше")
-                {
-                    PrintDossier(names, titles, salaries, i);
-                    noMatches = false;
-                }
-                else if (salaries[i] < salary && moreOrLess == "меньше")
-                {
-                    PrintDossier(names, titles, salaries, i);
-                    noMatches = false;
-                }
-            }
+            noMatches = FindBySalary(names, titles, salaries, salary, noMatches);
             break;
         case "по должности":
             Console.WriteLine("Введите должность сотрудника:");
             string title = Console.ReadLine();
-            for (int i=0; i<titles.Length; i++)
-            {
-                if (titles[i] == title)
-                {
-                    PrintDossier(names, titles, salaries, i);
-                    noMatches = false;
-                }
-            }
+            noMatches = FindByTitle(names, titles, salaries, title, noMatches);
             break;
         default:
             Console.WriteLine("Некорректный параметр поиска.");
