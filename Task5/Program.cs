@@ -22,11 +22,17 @@ int[] AddSalary(int[] salaries, int salary)
 }
 
 
+void PrintDossier(string[][] names, string[] titles, int[] salaries, int i)
+{
+    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+}
+
+
 void PrintDossiers(string[][] names, string[] titles, int[] salaries)
 {
     for (int i=0; i<titles.Length; i++)
     {
-        Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+        PrintDossier(names, titles, salaries, i);
     }
 }
 
@@ -96,7 +102,7 @@ void FindDossier(string[][] names, string[] titles, int[] salaries)
             {
                 if (names[i][0] == surname)
                 {
-                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    PrintDossier(names, titles, salaries, i);
                     noMatches = false;
                 }
             }
@@ -111,12 +117,12 @@ void FindDossier(string[][] names, string[] titles, int[] salaries)
 
                 if (salaries[i] > salary && moreOrLess == "больше")
                 {
-                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    PrintDossier(names, titles, salaries, i);
                     noMatches = false;
                 }
                 else if (salaries[i] < salary && moreOrLess == "меньше")
                 {
-                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    PrintDossier(names, titles, salaries, i);
                     noMatches = false;
                 }
             }
@@ -128,7 +134,7 @@ void FindDossier(string[][] names, string[] titles, int[] salaries)
             {
                 if (titles[i] == title)
                 {
-                    Console.WriteLine($"{names[i][0]} {names[i][1]} {names[i][2]} - {titles[i]} - {salaries[i]}");
+                    PrintDossier(names, titles, salaries, i);
                     noMatches = false;
                 }
             }
